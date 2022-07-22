@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <title>创宇盾防御设置</title>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>精确访问控制策略</h1>
+      </header>
+    <input class="md-trigger" type="button" value="添加策略" id="btnAdd" style="cursor: pointer;border-radius:5%;height:50px;width:110px;border-style: hidden;background-color:#0066CC;color: white;"/><span class="detail"> 最多可添加20条策略。 </span>
+    <!-- <input type="button" id="btnReverse" value="反选" /> -->
+    <div>
+    <table table cellspacing="0" cellpadding="0" class="table_border" width="100%">
+        <thead >
+        <th width="50" class="headerstyle"><input type="checkbox" id="checkAll" /></th>
+        <th width="200" class="headerstyle">策略名称</th>
+        <th width="200" class="headerstyle">匹配条件</th>
+        <th width="50" class="headerstyle">匹配动作</th>
+        <th width="50" class="headerstyle">生效端口</th>
+        <th width="50" class="headerstyle">优先级</th>
+        <th width="50" class="headerstyle">策略开关</th>
+        <th width="100" class="headerstyle">操作</th>
+        </thead>
+        <tbody id="list"></tbody>
+    </table>
+    </div>
+    <input class="deleteall" type="button" id="DeleteAll" value="批量删除" />
+    <div id="bgDiv"></div>
+    <div id="windowsDiv">
+        <input type="hidden" id="hidId" />
+        <h3 class="modistr"id="modistr">添加策略</h3>
+        策略名称<span class="alert">* </span><input type="text" id="textId" />
+        <br>
+        <p><label>匹配条件 </label>
+            <table cellspacing="0" cellpadding="0" class="table_border" width="100%">
+                <head>
+                    <style type="text/css" table rules=rows>
+                    </style>
+                </head>
+                <tr height="64" class="headerstyle">
+                    <td>
+                        <nobr>类型</nobr>
+                    </td>
+                    <td>
+                        <nobr>匹配字段</nobr>
+                    </td>
+                    <td>
+                        <nobr>逻辑符</nobr>
+                    </td>
+                    <td>
+                        <nobr>匹配内容</nobr>
+                    </td>   
+                </tr>
+                <tr>
+                    <td>
+                        <select id="type">
+                            <option type="checkbox" value="基础">基础</option>
+                            <option type="checkbox" value="自定义">自定义</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="field">
+                            <option type="checkbox" value="Cookie">Cookie</option>
+                            <option type="checkbox" value="Referer">Referer</option>
+                            <option type="checkbox" value="HTTP-Method">HTTP-Method</option>
+                            <option type="checkbox" value="User-Agent">User-Agent</option>
+                            <option type="checkbox" value="X-Forwarded-For">X-Forwarded-For</option>
+                            <option type="checkbox" value="URI">URI</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="symbol">
+                            <option type="checkbox" value="包含">包含</option>
+                            <option type="checkbox" value="不包含">不包含</option>
+                            <option type="checkbox" value="等于">等于</option>
+                            <option type="checkbox" value="不等于">不等于</option>
+                            <option type="checkbox" value="长度小于">长度小于</option>
+                            <option type="checkbox" value="长度等于">长度等于</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id="content" name="02" type="text" placeholder="只允许填写一个匹配项" >
+                    </td>               
+                </tr>
+            </table></p>
+        <br>
+        <p class="note">1、每条策略最多添加3个条件，且所有条件全部匹配上，该策略才生效。</p>
+        <p class="note">2、自定义字段只允许使用字母、数字、横杠，不超过50个字符，且不能与可选字段重复。
+        <a href="http://help.yunaq.com/faq/1442/index.html" target="_blank">查看匹配字段说明</a></p>
+        匹配动作<span class="alert">* </span><input type="text" id="textAction" />
+        <br>
+        生效端口<input type="text" id="textPort" />
+        <br>
+        <p class="note">不填写默认对所有端口生效</p>        
+        优先级<span class="alert">* </span><input type="text" id="textPriority" />
+        <br>
+        <p class="note">请填入数字1~100，数字越小代表优先级越高。</p>
+        <input type="button" class="btnSave" id="btnSave" value="确认" />
+        <input type="button" class="btnCancel" id="btnCancel" value="取消" />
+    </div>
+</body>
+</html>
